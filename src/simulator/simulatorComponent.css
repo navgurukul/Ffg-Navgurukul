@@ -1,0 +1,19 @@
+.simulator {
+    width: 70vw;
+    height: 95vh;
+    position: absolute;
+    margin: auto;
+}
+
+.simulatorIcons {
+    position: absolute;
+    right: 0vw;
+    bottom: 5vh;
+    height: 20vh;
+    width: 8vw;
+}
+
+.simulatorIcon {
+    width: 7vw;
+    height: 4vh;
+}

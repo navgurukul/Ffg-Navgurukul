@@ -1,0 +1,16 @@
+.nav_bar {
+    background: #8bc34a;
+    position: absolute;
+    height: 5vh;
+    width: 100vw;
+    top: 0vh;
+    left: 0vw;
+}
+
+.code {
+    right: 10vw;
+    height: 5vh;
+    position: absolute;
+    align-items: center;
+    display: flex;
+}

@@ -1,0 +1,43 @@
+.slider_icon {
+    position: absolute;
+    z-index: 99;
+    right: 0vw;
+    top: 5vh;
+    height: 10vh;
+    width: 2vw;
+}
+
+.icon_box {
+    background: white;
+    position: absolute;
+    height: 10vh;
+    width: 2vw;
+    right: 0vw;
+    bottom: 0vh;
+    box-shadow: -2.5px 0px 5px grey;
+}
+
+.arrow {
+    height: 2vh;
+    width: 1vw;
+    position: absolute;
+    margin: 4vh 0.5vw;
+}
+
+.slider_container {
+    position: absolute;
+    height: 95vh;
+    width: 70vw;
+    right: 0vw;
+    bottom: 0vh;
+}
+
+.container_box {
+    background: white;
+    position: absolute;
+    height: 95vh;
+    width: 70vw;
+    right: 0vw;
+    bottom: 0vh;
+    box-shadow: -2.5px 0px 5px grey;
+}
