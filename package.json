@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@blockly/block-plus-minus": "^2.0.27",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.5",
     "@react-oauth/google": "^0.11.0",
     "@rollup/plugin-json": "^4.1.0",
     "@svgdotjs/svg.draggable.js": "^3.0.2",
@@ -18,6 +21,9 @@
     "@types/node": "^16.18.31",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/react-onclickoutside": "^6.7.4",
+    "@uidotdev/usehooks": "^2.1.0",
+    "avrgirl-arduino": "^5.0.1",
     "axios": "^1.4.0",
     "blockly": "^5.20210325.1",
     "blockly-field-color-wheel": "^1.0.2",
@@ -27,6 +33,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
+    "react-onclickoutside": "^6.13.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
@@ -57,8 +64,8 @@
     "@types/jest": "^25.2.3",
     "@types/node": "^14.18.47",
     "@types/webpack-env": "^1.18.1",
-    "bootstrap": "^4.3.1",
     "ajv": "^7.2.4",
+    "bootstrap": "^4.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^5.3.0",
     "css-loader": "^6.8.1",
@@ -94,7 +101,7 @@
     "webpack-merge": "^5.9.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3002 react-scripts start",
     "build": "webpack --config webpack.prod.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
