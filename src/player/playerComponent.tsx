@@ -98,6 +98,7 @@ function moveWait() {
 
 export function stop() {
     infinite = false;
+    playing = false
 }
 
 async function playFrame() {

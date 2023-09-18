@@ -1,19 +1,19 @@
 .simulator {
-    width: 70vw;
-    height: 95vh;
+    width: 100%;
+    height: 100%;
     position: absolute;
     margin: auto;
 }
 
 .simulatorIcons {
     position: absolute;
-    right: 0vw;
-    bottom: 5vh;
-    height: 20vh;
-    width: 8vw;
+    right: 0%;
+    bottom: 5%;
+    height: 15%;
+    width: 12.5%;
 }
 
 .simulatorIcon {
-    width: 7vw;
-    height: 4vh;
+    width: 100%;
+    height: 25%;
 }
