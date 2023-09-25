@@ -16,31 +16,24 @@ function Header() {
     const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
     const [showDialog, toggleDialog] = useToggle(false);
     const [dialogText, setDialogText] = useState("");
-    const [arduinoCode, setArduinoCode] = useState("")
 
   function handleChange() {
     setChecked(!checked)
   }
 
   useEffect(() => {
-    codeStore.subscribe(code =>{
-      setArduinoCode(code.code)
-    })
     updateBrowserSupported('serial' in navigator);
-    // fetch('http://localhost:8080/get-code',{
-    //   method: "POST",
-    //   body: arduinoCode
-    // })
-    //     .then(res => {
-    //       console.log('res = ', res)
-    //     })
   }, [])
 
   const history = useHistory();
 
   const handleDownload = async() => {
     let data
-    console.log('code = ', arduinoCode)
+    let arduinoCode
+    codeStore.subscribe(code => {
+      arduinoCode = code.code
+    })
+    console.log('arduinocode = ', arduinoCode)
     try{
       const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code',{
         method: "POST",
