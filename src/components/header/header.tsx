@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsToggleOff, BsToggleOn } from "react-icons/bs"
-import { BiArrowBack } from 'react-icons/bi';
+import { BiArrowBack, BiMicrochip } from 'react-icons/bi';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
 import userAction from "../../redux/actions/user";
-import {useToggle} from "@uidotdev/usehooks";
+import { useToggle } from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
 
-function Header() {
+function Header(props) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
     const [browserSupported, updateBrowserSupported] = useState(true);
@@ -17,8 +17,13 @@ function Header() {
     const [showDialog, toggleDialog] = useToggle(false);
     const [dialogText, setDialogText] = useState("");
 
-  function handleChange() {
-    setChecked(!checked)
+  function handleCode() {
+    props.func(!props.code);
+  }
+
+  function handleSimulator() {
+    props.simulatorfunc(true);
+    props.playfunc(true);
   }
 
   useEffect(() => {
@@ -46,7 +51,7 @@ function Header() {
       })
       data = await resp.arrayBuffer();
 
-    }catch(e){
+    } catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
       return
@@ -58,8 +63,8 @@ function Header() {
       board: "uno",
       debug: true,
     });
-    avrgirl.flash(data, error=> {
-      if(error) console.log("error = ", error)
+    avrgirl.flash(data, error => {
+      if (error) console.log("error = ", error)
       else {
         setDialogText("Flash done")
         console.log("flash done")
@@ -79,9 +84,15 @@ function Header() {
       <div className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} />
       </div>
-      <button onClick={handleDownload}>Code Burn</button>
-      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleChange}>
-        {checked ? <BsToggleOn /> : <BsToggleOff />}
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleSimulator}>
+        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Play Simulator </div>
+      </div>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleDownload}>
+        <BiMicrochip />
+        <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Code Burn </div>
+      </div>
+      <div className="w3-bar-item w3-right w3-medium" style={{ alignItems: "center", display: "flex" }} onClick={handleCode}>
+        {props.code ? <BsToggleOn /> : <BsToggleOff />}
         <div style={{ whiteSpace: 'pre-wrap', cursor: "default" }}> Enable Code View </div>
       </div>
     </header>
