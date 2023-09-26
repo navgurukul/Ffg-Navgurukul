@@ -20,7 +20,7 @@ import { BiTargetLock } from "react-icons/bi";
 import _ from "lodash";
 
 Blockly.setLocale(En);
-function SimulatorComponent(){
+function SimulatorComponent(props) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     let container = useRef<HTMLDivElement>(null)
     let draw;
@@ -125,7 +125,7 @@ function SimulatorComponent(){
                 //         update(draw, currentFrame);
                 //     }
                 // }
-                document.getElementById("container").innerHTML = draw.svg()
+                if(document.getElementById("container") && document.getElementById("container").innerHTML) document.getElementById("container").innerHTML = draw.svg()
 
 
 
@@ -156,6 +156,7 @@ function SimulatorComponent(){
 
     const [showButton, setButton] = useState(false);
     const [disabled, setDisabled] = useState(false);
+
     function switch_button() {
         setButton(!showButton);
         setDisabled(true);
@@ -167,15 +168,43 @@ function SimulatorComponent(){
         }
     }
 
-    return(
+    const mouseClickEvents = ['mousedown', 'click', 'mouseup'];
+    function simulateMouseClick(element) {
+        mouseClickEvents.forEach(mouseEventType =>
+            element.dispatchEvent(
+                new MouseEvent(mouseEventType, {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true,
+                    buttons: 1
+                })
+            )
+        );
+    }
+
+    useEffect(() => {
+        if (props.play) {
+            var element = document.getElementById("play");
+            simulateMouseClick(element);
+        }
+    }, [])
+
+    return (
         <React.Fragment>
             <div ref={container} id="container" className="simulator" />
             <div className="simulatorIcons">
-                {showButton ? <BsFillStopCircleFill onClick={switch_button} className="simulatorIcon" color="red" />
-                    : <BsFillPlayCircleFill onClick={switch_button} className="simulatorIcon" color="green" />}
-                <BsPlusCircle onClick={disabled ? () => { } : zoomIn} className="simulatorIcon" color={disabled ? "grey" : "black"} />
-                <BsDashCircle onClick={disabled ? () => { } : zoomOut} className="simulatorIcon" color={disabled ? "grey" : "black"} />
-                <BiTargetLock onClick={disabled ? () => { } : reCenter} className="simulatorIcon" color={disabled ? "grey" : "black"} />
+                <div className="simulatorIcon">
+                    {showButton ? <BsFillStopCircleFill onClick={switch_button} className="individual" color="red" />
+                        : <BsFillPlayCircleFill onClick={switch_button} id="play" className="individual" color="green" />}</div>
+                <div className="simulatorIcon">
+                    <BsPlusCircle onClick={disabled ? () => { } : zoomIn} className="individual" color={disabled ? "grey" : "black"} />
+                </div>
+                <div className="simulatorIcon">
+                    <BsDashCircle onClick={disabled ? () => { } : zoomOut} className="individual" color={disabled ? "grey" : "black"} />
+                </div>
+                <div className="simulatorIcon">
+                    <BiTargetLock onClick={disabled ? () => { } : reCenter} className="individual" color={disabled ? "grey" : "black"} />
+                </div>
             </div>
         </React.Fragment>
     )
