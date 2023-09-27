@@ -13,6 +13,9 @@ import {
     arduinoLoopBlockShowLoopForeverText,
     arduinoLoopBlockShowNumberOfTimesThroughLoop
 } from "../core/blockly/helpers/arduino_loop_block.helper";
+import {addListener, createFrames} from "../core/blockly/registerEvents";
+import update from "../core/virtual-circuit/update";
+import {draw} from "svelte/transition";
 import Header from "../components/header/header";
 import Slider from "../components/slider/slider";
 Blockly.setLocale(En);
@@ -25,6 +28,9 @@ const BlocklyComponents = () => {
     const unsubscribes = [];
     let workspaceInitialize = false;
     const [loadEl,setLoadEl] = useState(0);
+    const [code, setCode] = useState(false)
+    const [simulator, setSimulator] = useState(false)
+    const [play, setPlay] = useState(false)
 
     useEffect(()=>{
         window.Blockly = Blockly;
@@ -50,11 +56,23 @@ const BlocklyComponents = () => {
         );
     },[loadEl])
 
+    const isCode = (data) => {
+        setCode(data);
+      }
+
+    const playSimulator = (data) => {
+        setSimulator(data)
+    }
+
+    const playfunc = (data) => {
+        setPlay(data)
+    }
+
     return (
         <React.Fragment>
-            <Header />
-            <div ref={blocklyElement} id="blocklyDiv" />
-            <Slider />
+            <Header func={isCode} simulatorfunc={playSimulator} code={code} playfunc={playfunc} />           
+            <div ref={blocklyElement} id="blocklyDiv" />  
+            <Slider func={isCode} code={code} simulator={simulator} simulatorfunc={playSimulator} play={play} playfunc={playfunc}/>
         </React.Fragment>)
 }
 

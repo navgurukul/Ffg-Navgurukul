@@ -24,6 +24,7 @@
     "@types/react-onclickoutside": "^6.7.4",
     "@uidotdev/usehooks": "^2.1.0",
     "avrgirl-arduino": "^5.0.1",
+    "prismjs": "^1.29.0",
     "axios": "^1.4.0",
     "blockly": "^5.20210325.1",
     "blockly-field-color-wheel": "^1.0.2",
