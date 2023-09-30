@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
 import userAction from "../../redux/actions/user";
-import { useToggle } from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
 
@@ -14,7 +13,6 @@ function Header(props) {
   const [checked, setChecked] = useState(false);
     const [browserSupported, updateBrowserSupported] = useState(true);
     const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
-    const [showDialog, toggleDialog] = useToggle(false);
     const [dialogText, setDialogText] = useState("");
 
   function handleCode() {
