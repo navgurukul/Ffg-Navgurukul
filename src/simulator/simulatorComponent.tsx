@@ -125,7 +125,7 @@ function SimulatorComponent(props) {
                 //         update(draw, currentFrame);
                 //     }
                 // }
-                document.getElementById("container").innerHTML = draw.svg()
+                if (document.getElementById("container") && document.getElementById("container").innerHTML) document.getElementById("container").innerHTML = draw.svg()
 
 
 
