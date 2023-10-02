@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { googleLogout } from "@react-oauth/google";
 import userAction from "../../redux/actions/user";
+import {useToggle} from "@uidotdev/usehooks";
 import codeStore from "../../stores/code.store";
 import AvrgirlArduino from "avrgirl-arduino";
 
@@ -13,6 +14,7 @@ function Header(props) {
   const [checked, setChecked] = useState(false);
     const [browserSupported, updateBrowserSupported] = useState(true);
     const [fileArrayBuffer, setFileArrayBuffer] = useState(null);
+    const [showDialog, toggleDialog] = useToggle(false);
     const [dialogText, setDialogText] = useState("");
 
   function handleCode() {
@@ -37,17 +39,17 @@ function Header(props) {
       arduinoCode = code.code
     })
     console.log('arduinocode = ', arduinoCode)
-    try{
-      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
-          method: "POST",
-          body: JSON.stringify({
-              code: arduinoCode
-          }),
-          headers: {
-              'content-type': 'application/json;charset=utf-8'
-          }
-      })
-      data = await resp.arrayBuffer();
+    try {
+        const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+            method: "POST",
+            body: JSON.stringify({
+                code: arduinoCode
+            }),
+            headers: {
+                'content-type': 'application/json;charset=utf-8'
+            }
+        })
+        data = await resp.arrayBuffer();
 
     } catch (e) {
       setDialogText("Fetch failed")
