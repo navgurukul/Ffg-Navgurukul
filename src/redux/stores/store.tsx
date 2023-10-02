@@ -1,4 +1,4 @@
-import {routerMiddleware} from 'connected-react-router';
+// import {routerMiddleware} from 'connected-react-router';
 import {createLogger} from 'redux-logger';
 import {applyMiddleware, compose, createStore} from "redux";
 import getRootReducer from "../reducers";
@@ -7,7 +7,7 @@ import {createHashHistory} from 'history';
 const configreStore = history => {
     let middlewares =[]
     let enhancers = []
-    middlewares.push(routerMiddleware(history))
+    // middlewares.push(routerMiddleware(history))
     const logger = createLogger()
     middlewares.push(logger)
 
@@ -20,7 +20,7 @@ const configreStore = history => {
     enhancers.push(applyMiddleware(...middlewares))
 
     const storeEnhancers = composeEnhancers(...enhancers)
-    const store = createStore(getRootReducer(history),storeEnhancers)
+    const store = createStore(getRootReducer(), storeEnhancers)
 
     if(module.hot){
         module.hot.accept('../reducers',()=>{
