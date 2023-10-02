@@ -125,7 +125,7 @@ function SimulatorComponent(props) {
                 //         update(draw, currentFrame);
                 //     }
                 // }
-                if(document.getElementById("container") && document.getElementById("container").innerHTML) document.getElementById("container").innerHTML = draw.svg()
+                document.getElementById("container").innerHTML = draw.svg()
 
 
 
@@ -194,10 +194,12 @@ function SimulatorComponent(props) {
             <div ref={container} id="container" className="simulator" />
             <div className="simulatorIcons">
                 <div className="simulatorIcon">
-                    {showButton ? <BsFillStopCircleFill onClick={switch_button} className="individual" color="red" />
-                        : <BsFillPlayCircleFill onClick={switch_button} id="play" className="individual" color="green" />}</div>
+                    {showButton ? <BsFillStopCircleFill onClick={switch_button} className="individual" color="red"/>
+                        : <BsFillPlayCircleFill onClick={switch_button} id="play" className="individual"
+                                                color="green"/>}</div>
                 <div className="simulatorIcon">
-                    <BsPlusCircle onClick={disabled ? () => { } : zoomIn} className="individual" color={disabled ? "grey" : "black"} />
+                    <BsPlusCircle onClick={disabled ? () => {
+                    } : zoomIn} className="individual" color={disabled ? "grey" : "black"}/>
                 </div>
                 <div className="simulatorIcon">
                     <BsDashCircle onClick={disabled ? () => { } : zoomOut} className="individual" color={disabled ? "grey" : "black"} />
