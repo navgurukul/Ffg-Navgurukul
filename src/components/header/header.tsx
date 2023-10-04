@@ -99,16 +99,16 @@ function Header(props) {
     })
     console.log('arduinocode = ', arduinoCode)
     try {
-      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
-        method: "POST",
-        body: JSON.stringify({
-          code: arduinoCode
-        }),
-        headers: {
-          'content-type': 'application/json;charset=utf-8'
-        }
-      })
-      data = await resp.arrayBuffer();
+        const resp = await fetch('https://dev-api.arduino.merakilearn.org/get-code', {
+            method: "POST",
+            body: JSON.stringify({
+                code: arduinoCode
+            }),
+            headers: {
+                'content-type': 'application/json;charset=utf-8'
+            }
+        })
+        data = await resp.arrayBuffer();
 
     } catch (e) {
       e += '';

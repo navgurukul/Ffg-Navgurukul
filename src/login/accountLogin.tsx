@@ -48,7 +48,7 @@ const AccountLogin = () => {
 
     return(
         <div>
-            <h2>Navgurukul-Arduino Playground Google Login</h2>
+            <h2>Navgurukul-Arduino Playground Google Login Version 2</h2>
             <br />
             <br />
             {profile && !is_empty(profile)? (
