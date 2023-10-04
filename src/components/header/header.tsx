@@ -51,7 +51,7 @@ function Header(props) {
     })
     console.log('arduinocode = ', arduinoCode)
     try {
-      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+      const resp = await fetch('https://dev-api.arduino.merakilearn.org/get-code', {
         method: "POST",
         body: JSON.stringify({
           code: arduinoCode
