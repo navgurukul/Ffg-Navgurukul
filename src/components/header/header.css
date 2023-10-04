@@ -1,16 +1,11 @@
-.nav_bar {
-    background: #8bc34a;
-    position: absolute;
-    height: 5vh;
-    width: 100vw;
-    top: 0vh;
-    left: 0vw;
+@media (max-width: 768px) {
+    .hide-on-mobile {
+        display: none;
+    }
 }
 
-.code {
-    right: 10vw;
-    height: 5vh;
-    position: absolute;
-    align-items: center;
-    display: flex;
+@media (min-width: 767px) {
+    .show-on-mobile {
+        display: none;
+    }
 }
