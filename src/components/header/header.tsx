@@ -16,6 +16,8 @@ declare global {
   interface Window {
     AndroidBridge: {
       hexDataUploadToAndroidDevice: (data: string) => void;
+      hexDataUploadToAndroidDevice1: (data: string) => void;
+      hexDataUploadToAndroidDevice2: (data: ArrayBuffer) => void;
     };
   }
 }
@@ -51,7 +53,7 @@ function Header(props) {
     })
     console.log('arduinocode = ', arduinoCode)
     try {
-      const resp = await fetch('https://dev-api.arduino.merakilearn.org/get-code', {
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
         method: "POST",
         body: JSON.stringify({
           code: arduinoCode
@@ -61,11 +63,17 @@ function Header(props) {
         }
       })
       data = await resp.arrayBuffer();
-      var jsonData = JSON.stringify(Array.from(new Uint8Array(data)));
 
+      var dataBuffer = btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
+      var dataArrayBuffer = new Uint8Array(data).buffer;
+
+      console.log('HexFile Data after convert data string ', dataBuffer)
       console.log('HexFile Data from API', data)
-      console.log('HexFile Data after covert json string', jsonData)
-      window.AndroidBridge.hexDataUploadToAndroidDevice(jsonData)
+      console.log('HexFile Data from DataArrayBuffer', dataArrayBuffer)
+
+      window.AndroidBridge.hexDataUploadToAndroidDevice(dataBuffer)
+      window.AndroidBridge.hexDataUploadToAndroidDevice1(data)
+      window.AndroidBridge.hexDataUploadToAndroidDevice2(dataArrayBuffer)
     } catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
@@ -99,16 +107,16 @@ function Header(props) {
     })
     console.log('arduinocode = ', arduinoCode)
     try {
-        const resp = await fetch('https://dev-api.arduino.merakilearn.org/get-code', {
-            method: "POST",
-            body: JSON.stringify({
-                code: arduinoCode
-            }),
-            headers: {
-                'content-type': 'application/json;charset=utf-8'
-            }
-        })
-        data = await resp.arrayBuffer();
+      const resp = await fetch('http://dev-api.arduino.merakilearn.org/get-code', {
+        method: "POST",
+        body: JSON.stringify({
+          code: arduinoCode
+        }),
+        headers: {
+          'content-type': 'application/json;charset=utf-8'
+        }
+      })
+      data = await resp.arrayBuffer();
 
     } catch (e) {
       e += '';
