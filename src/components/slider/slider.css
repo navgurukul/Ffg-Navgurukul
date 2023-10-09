@@ -61,7 +61,6 @@
     width: 50%;
     right: 0%;
     bottom: 0%;
-    animation: 0.1s linear 0s 1 alternate slide-in;
     overflow: scroll;
 }
 
@@ -85,23 +84,32 @@
     box-shadow: -2.5px 0px 2.5px grey;
 }
 
-/* pre {
-    margin: 0;
-    min-height: 100%;
-    min-width: 100%;
-    border-left: none;
-    margin-bottom: 15px;
-  } */
-
 code {
     height: 100%;
     width: 100%;
     right: 0%;
     bottom: 0%;
-    /* box-shadow: -2.5px 0px 2.5px grey; */
+}
 
-    /* height: 100% ;
+.line-numbers .line-numbers-rows {
     position: absolute;
-    width: 100% ;
-    overflow: scroll scroll; */
-  }
+    pointer-events: none;
+    top: 0;
+    width: 3em;
+    /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
