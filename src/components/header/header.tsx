@@ -16,8 +16,6 @@ declare global {
   interface Window {
     AndroidBridge: {
       hexDataUploadToAndroidDevice: (data: string) => void;
-      hexDataUploadToAndroidDevice1: (data: string) => void;
-      hexDataUploadToAndroidDevice2: (data: ArrayBuffer) => void;
     };
   }
 }
@@ -64,16 +62,12 @@ function Header(props) {
       })
       data = await resp.arrayBuffer();
 
-      var dataBuffer = btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
       var dataArrayBuffer = new Uint8Array(data).buffer;
 
-      console.log('HexFile Data after convert data string ', dataBuffer)
       console.log('HexFile Data from API', data)
       console.log('HexFile Data from DataArrayBuffer', dataArrayBuffer)
 
-      window.AndroidBridge.hexDataUploadToAndroidDevice(dataBuffer)
-      window.AndroidBridge.hexDataUploadToAndroidDevice1(data)
-      window.AndroidBridge.hexDataUploadToAndroidDevice2(dataArrayBuffer)
+      window.AndroidBridge.hexDataUploadToAndroidDevice(data)
     } catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
