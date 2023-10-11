@@ -61,13 +61,11 @@ function Header(props) {
         }
       })
       data = await resp.arrayBuffer();
-
-      var dataArrayBuffer = new Uint8Array(data).buffer;
-
-      console.log('HexFile Data from API', data)
-      console.log('HexFile Data from DataArrayBuffer', dataArrayBuffer)
-
-      window.AndroidBridge.hexDataUploadToAndroidDevice(data)
+      const textDecoder = new TextDecoder('utf-8');
+      const decodedData = textDecoder.decode(data)
+      console.log('decoded data = ', decodedData)
+      console.log('HexFile Data from API', decodedData)
+      window.AndroidBridge.hexDataUploadToAndroidDevice(decodedData)
     } catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
