@@ -30,6 +30,7 @@ const startBlockly = (blocklyElement) => {
         type: Blockly.Events.MOVE,
         blockId: arduinoBlock.id,
     });
+    workspace.centerOnBlock('forever_loop')
 }
 
 const createWorkspace = (blocklyElement: RefObject<HTMLDivElement> | MutableRefObject<undefined>)=>{
