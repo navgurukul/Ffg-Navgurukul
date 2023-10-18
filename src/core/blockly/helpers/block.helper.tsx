@@ -43,7 +43,7 @@ export const createBlock = (
     y: number,
     deletable = false
 ) => {
-    const block = getWorkspace().newBlock(name) as BlockSvg;
+    const block = getWorkspace().newBlock(name, 'forever_loop') as BlockSvg;
     block.setDeletable(deletable);
     block.initSvg();
     block.render();
