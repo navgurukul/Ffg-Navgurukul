@@ -23,11 +23,11 @@ declare global {
 
 
 
-// if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
-//   console.log("hexDataUploadToAndroidDevice function:", window.AndroidBridge.hexDataUploadToAndroidDevice);
-// } else {
-//   console.log("AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object.");
-// }
+if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
+  console.log("hexDataUploadToAndroidDevice function:", window.AndroidBridge.hexDataUploadToAndroidDevice);
+} else {
+  console.log("AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object.");
+}
 
 
 
