@@ -16,9 +16,20 @@ declare global {
   interface Window {
     AndroidBridge: {
       hexDataUploadToAndroidDevice: (data: string) => void;
+   
     };
   }
 }
+
+
+
+// if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
+//   console.log("hexDataUploadToAndroidDevice function:", window.AndroidBridge.hexDataUploadToAndroidDevice);
+// } else {
+//   console.log("AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object.");
+// }
+
+
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -61,11 +72,16 @@ function Header(props) {
         }
       })
       data = await resp.arrayBuffer();
+      console.log('code burn  = ', data)
       const textDecoder = new TextDecoder('utf-8');
       const decodedData = textDecoder.decode(data)
+    
       console.log('decoded data = ', decodedData)
       console.log('HexFile Data from API', decodedData)
       window.AndroidBridge.hexDataUploadToAndroidDevice(decodedData)
+
+      console.log("hexDataUploadToAndroidDevice", window.AndroidBridge.hexDataUploadToAndroidDevice);
+
     } catch (e) {
       setDialogText("Fetch failed")
       console.log('Fetch failed ', e)
