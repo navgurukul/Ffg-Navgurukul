@@ -72,7 +72,7 @@ function Header(props) {
         }
       })
       data = await resp.arrayBuffer();
-      console.log('code burn  = ', data)
+      console.log('code-burn  = ', data)
       const textDecoder = new TextDecoder('utf-8');
       const decodedData = textDecoder.decode(data)
     
@@ -80,7 +80,7 @@ function Header(props) {
       console.log('HexFile Data from API', decodedData)
       window.AndroidBridge.hexDataUploadToAndroidDevice(decodedData)
 
-      console.log("hexDataUploadToAndroidDevice", window.AndroidBridge.hexDataUploadToAndroidDevice);
+      // console.log("hexDataUploadToAndroidDevice", window.AndroidBridge.hexDataUploadToAndroidDevice);
 
     } catch (e) {
       setDialogText("Fetch failed")
