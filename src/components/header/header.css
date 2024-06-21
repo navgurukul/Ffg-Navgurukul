@@ -4,8 +4,42 @@
     }
 }
 
-@media (min-width: 767px) {
+/* @media (min-width: 767px) {
+    .show-on-mobile {
+        display: none;
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+/* @media screen and (max-width:480px) and (min-width: 320px) {
+    .show-on-mobile {
+        display: block;
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
     .show-on-mobile {
         display: none;
     }
 }
+
+
+@media screen and (max-width: 800px) {
+    .show-on-mobile {
+        display: none;
+    }
+} */
+
+
+
