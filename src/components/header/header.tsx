@@ -21,20 +21,22 @@ declare global {
   interface Window {
     AndroidBridge: {
       hexDataUploadToAndroidDevice: (data: string) => void;
+      onBack?: () => void; // Add the onBack method as optional
+
     };
   }
 }
 
-if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
-  console.log(
-    "hexDataUploadToAndroidDevice function:",
-    window.AndroidBridge.hexDataUploadToAndroidDevice
-  );
-} else {
-  console.log(
-    "AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object."
-  );
-}
+// if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
+//   console.log(
+//     "hexDataUploadToAndroidDevice function:",
+//     window.AndroidBridge.hexDataUploadToAndroidDevice
+//   );
+// } else {
+//   console.log(
+//     "AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object."
+//   );
+// }
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -166,12 +168,35 @@ function Header(props) {
     });
   };
 
-  const logoutUser = () => {
-    googleLogout();
-    dispatch(userAction.loginFromGoogle(null));
-    dispatch(userAction.setCurrentUser(null));
-    history.push("/");
+  const onBack = () => {
+    // Logic to handle back action in Android WebView
+    console.log("Back action for Android WebView");
+    if (window.AndroidBridge && window.AndroidBridge.onBack) {
+      window.AndroidBridge.onBack();
+    }
   };
+  
+
+  const logoutUser = () => {
+    // Check if the app is running in an Android WebView
+    if (window.AndroidBridge) {
+      // If true, call the onBack function for Android
+      onBack();
+    } else {
+      googleLogout();
+      dispatch(userAction.loginFromGoogle(null));
+      dispatch(userAction.setCurrentUser(null));
+      history.push("/");
+    }
+  };
+
+
+  // const logoutUser = () => {
+  //   googleLogout();
+  //   dispatch(userAction.loginFromGoogle(null));
+  //   dispatch(userAction.setCurrentUser(null));
+  //   history.push("/");
+  // };
 
   return (
     <header
@@ -179,7 +204,7 @@ function Header(props) {
       style={{ height: "40px" }}
     >
       <div className="w3-bar-item w3-padding">
-        <BiArrowBack onClick={logoutUser} />
+        <BiArrowBack onClick={logoutUser} /> 
       </div>
       <div
         className="w3-bar-item w3-right w3-medium"
