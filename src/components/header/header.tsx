@@ -27,7 +27,16 @@ declare global {
   }
 }
 
-
+// if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
+//   console.log(
+//     "hexDataUploadToAndroidDevice function:",
+//     window.AndroidBridge.hexDataUploadToAndroidDevice
+//   );
+// } else {
+//   console.log(
+//     "AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object."
+//   );
+// }
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -81,7 +90,7 @@ function Header(props) {
       console.log("HexFile Data from API", decodedData);
       window.AndroidBridge.hexDataUploadToAndroidDevice(decodedData);
 
-     
+      // console.log("hexDataUploadToAndroidDevice", window.AndroidBridge.hexDataUploadToAndroidDevice);
     } catch (e) {
       setDialogText("Fetch failed");
       console.log("Fetch failed ", e);
@@ -119,7 +128,7 @@ function Header(props) {
     console.log("arduinocode = ", arduinoCode);
     try {
       const resp = await fetch(
-        "https://api.arduino.merakilearn.org/get-code",
+        "https://dev-api.arduino.merakilearn.org/get-code",
         {
           method: "POST",
           body: JSON.stringify({
