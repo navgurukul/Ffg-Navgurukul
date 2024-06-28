@@ -27,16 +27,7 @@ declare global {
   }
 }
 
-// if (window.AndroidBridge && window.AndroidBridge.hexDataUploadToAndroidDevice) {
-//   console.log(
-//     "hexDataUploadToAndroidDevice function:",
-//     window.AndroidBridge.hexDataUploadToAndroidDevice
-//   );
-// } else {
-//   console.log(
-//     "AndroidBridge or hexDataUploadToAndroidDevice is not available on the window object."
-//   );
-// }
+
 
 function Header(props) {
   const dispatch = useDispatch();
@@ -90,7 +81,7 @@ function Header(props) {
       console.log("HexFile Data from API", decodedData);
       window.AndroidBridge.hexDataUploadToAndroidDevice(decodedData);
 
-      // console.log("hexDataUploadToAndroidDevice", window.AndroidBridge.hexDataUploadToAndroidDevice);
+     
     } catch (e) {
       setDialogText("Fetch failed");
       console.log("Fetch failed ", e);
@@ -128,7 +119,7 @@ function Header(props) {
     console.log("arduinocode = ", arduinoCode);
     try {
       const resp = await fetch(
-        "https://dev-api.arduino.merakilearn.org/get-code",
+        "https://api.arduino.merakilearn.org/get-code",
         {
           method: "POST",
           body: JSON.stringify({
@@ -203,7 +194,7 @@ function Header(props) {
       className="w3-bar w3-top w3-light-green w3-text-black"
       style={{ height: "40px" }}
     >
-      <div className="w3-bar-item w3-padding">
+      <div  style={{ cursor: 'pointer' }} className="w3-bar-item w3-padding">
         <BiArrowBack onClick={logoutUser} /> 
       </div>
       <div
